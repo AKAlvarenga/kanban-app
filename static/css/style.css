@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  align-content: stretch;
+  margin: 0 auto;
+  max-width: 90%;
+}
+.lane {
+  flex-basis: 33vw
+}
