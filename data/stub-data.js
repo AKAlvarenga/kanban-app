@@ -4,17 +4,17 @@ const stubNotes = [
   {
     id: uuidv4(),
     name: 'Learn Webpack',
-    status: 'todo',
+    status: 'to-do',
   },
   {
     id: uuidv4(),
     name: 'Learn React',
-    status: 'todo',
+    status: 'to-do',
   },
   {
     id: uuidv4(),
     name: 'Learn Angular',
-    status: 'todo',
+    status: 'to-do',
   }
 ];
 

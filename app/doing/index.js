@@ -1,7 +1,7 @@
 const util = require('../utilities');
 
 const loadList = (data, todoContainer) => {
-  util.loadList(data, todoContainer, 'to-do-check');
+  util.loadList(data, todoContainer, 'doing-check');
 }
 
 module.exports = loadList;
