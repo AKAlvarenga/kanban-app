@@ -3,11 +3,13 @@ const {
   v4: uuidv4
 } = require('uuid');
 
+//Construct the list items
 const loadList = (data, container, kind) => {
     container.innerHTML = '';
     container.appendChild(list(data, container.getAttribute('id'), kind));
 }
 
+//Add task
 const addTask = (source, data, container, kind) => {
     const task = source;
     data.push({

@@ -3,6 +3,7 @@ const todo = require('./todo');
 const task = require('./task');
 const util = require('./utilities');
 const doing = require('./doing');
+const done = require('./done');
 const Swal = require('sweetalert2')
 
 require('../static/css/style.css');
@@ -10,11 +11,11 @@ require('../static/css/bootstrap.css');
 const app = document.getElementById('add-task');
 const todoContainer = document.getElementById('to-do');
 const doingContainer = document.getElementById('doing');
+const doneContainer = document.getElementById('done');
 
 document.onreadystatechange = () => {
   if (document.readyState == "complete") {
-    todo(data, todoContainer);
-    setListeners();
+    initCompononents(data);
   }
 }
 
@@ -39,20 +40,31 @@ task.addButton.addEventListener('click', () => {
 });
 
 const setListeners = () => {
-  const wrapper = document.getElementById('to-do-check');
+  const wrapperToDo = document.getElementById('to-do-check');
+  const wrapperDoing = document.getElementById('doing-check');
 
-  wrapper.addEventListener('change', event => {
+  //Event Listeners to do checkbox
+  wrapperToDo.addEventListener('change', event => {
     if (event.target.nodeName === 'INPUT') {
       const id = event.target.id;
       const pos = search(data, id);
       data[pos].status = 'doing';
-      const newDoing = data[pos];
-      todo(data, todoContainer);
-      doing(data, doingContainer);
-      setListeners();
+      initCompononents(data);
       return;
     }
   });
+
+  //Event Listener doing checkbox
+  wrapperDoing.addEventListener('change', event => {
+    if (event.target.nodeName === 'INPUT') {
+      const id = event.target.id;
+      const pos = search(data, id);
+      data[pos].status = 'done';
+      initCompononents(data);
+      return;
+    }
+  });
+
 }
 
 const search = (data, obj) => {
@@ -64,6 +76,13 @@ const search = (data, obj) => {
     }
   }
   return flag;
+}
+
+const initCompononents = data => {
+  todo(data, todoContainer);
+  doing(data, doingContainer);
+  done(data, doneContainer);
+  setListeners();
 }
 
 app.appendChild(task.addButton);

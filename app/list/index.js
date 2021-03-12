@@ -1,8 +1,10 @@
 const addCheckbox = require('./addCheckbox');
 
+//Main method to construct the list
 const list = (data, id, kind) => {
   const container = document.createElement('div');
-  const text = kind === 'to-do-check' ? 'Mark as in progress' : kind === 'doing-check' ? 'Mark as done' : 'Move to done';
+  //Used to set checkbox label
+  const text = kind === 'to-do-check' ? 'Mark as in progress' : kind === 'doing-check' ? 'Mark as done' : 'Done';
   container.setAttribute('id', kind);
   if (!!data && Array.isArray(data)) {
     data.forEach(task => {
@@ -14,6 +16,7 @@ const list = (data, id, kind) => {
 }
 
 const listElement = (task, data, text) => {
+  //Construct DOM
   const element = document.createElement('li');
   const label = document.createElement('label');
   const divCheck = document.createElement('div');
@@ -25,6 +28,11 @@ const listElement = (task, data, text) => {
 
   const check = addCheckbox(task, data);
 
+  //If text is done we disable the checkbox and by default let it checked
+  if (text === 'Done') {
+    check.setAttribute('disabled', 'disabled');
+    check.setAttribute('checked', 'true');
+  }
   label.setAttribute('class', 'form-check-label');
   label.setAttribute('for', task.id);
   label.innerHTML = text;
@@ -33,6 +41,7 @@ const listElement = (task, data, text) => {
   divCheck.appendChild(label);
 
   element.appendChild(divCheck);
+
   return element;
 }
 
