@@ -9,7 +9,7 @@ const stubNotes = [
   {
     id: uuidv4(),
     name: 'Learn React',
-    status: 'todo',
+    status: 'doing',
   },
   {
     id: uuidv4(),

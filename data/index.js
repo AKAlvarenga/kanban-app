@@ -1,2 +1,7 @@
 const { stubNotes } = require('./stub-data');
-module.exports = stubNotes;
+const status = {
+  TODO: 'todo',
+  DOING: 'doing',
+  DONE: 'done',
+};
+module.exports = { data: stubNotes, status };

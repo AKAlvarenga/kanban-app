@@ -1,11 +1,12 @@
 const list = require('../list');
+const { status } = require('../../data');
 const {
   v4: uuidv4
 } = require('uuid');
 
 const loadList = (data, container) => {
   container.innerHTML = '';
-  container.appendChild(list(data));
+  container.appendChild(list(data, status.TODO));
 }
 
 const addTask = (source, data, container) => {
