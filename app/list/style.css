@@ -1,0 +1,6 @@
+.divChild{
+    border-color: rgba(100, 194, 237, 0.904);
+    border-style: groove;
+    line-height: 150px;
+    padding: 0px 12px 0px 12px;
+}
