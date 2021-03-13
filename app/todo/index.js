@@ -3,14 +3,9 @@ const {
   v4: uuidv4
 } = require('uuid');
 
-const loadList = (data, container, callback = null) => {
+const loadList = (data, container) => {
   container.innerHTML = '';
-  const filteredData = data.filter(element =>{
-    if (element.status === 'todo'){
-      return element;
-    }
-  })
-  container.appendChild(list(filteredData, callback));
+  container.appendChild(list(data));
 }
 
 const addTask = (source, data, container) => {
