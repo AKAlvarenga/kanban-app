@@ -1,5 +1,6 @@
-const list = data => {
+const list = (data) => {
   const container = document.createElement('ul');
+
   if(!!data && Array.isArray(data)){
     data.forEach( task => {
       container.appendChild(listElement(task))
