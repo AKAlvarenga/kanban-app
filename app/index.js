@@ -60,10 +60,13 @@ task.addForm(app);
 // Append "New Task" button to the form
 app.appendChild(task.addButton);
 // Add ability to append new task on to-do queue
-task.addButton.addEventListener('click', () => todo.addTask(
-  document.getElementById("task-name"),
-  data,
-  todoContainer
-));
+task.addButton.addEventListener('click', () => {
+  todo.addTask(
+    document.getElementById("task-name"),
+    data,
+    todoContainer
+  )
+  addEventsTasks();
+});
 // let's go!
 renderApp();
