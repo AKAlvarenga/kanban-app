@@ -14,6 +14,7 @@ const addTask = (source, data, container) => {
   data.push({
     id: uuidv4(),
     name: task.value,
+    status: STATUS.TODO,
   });
   task.value = '';
   loadList(data, container)
