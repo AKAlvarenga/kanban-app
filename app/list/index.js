@@ -1,5 +1,7 @@
 const list = (data, status) => {
   const container = document.createElement('div');
+  console.log('datadump', {...data});
+  
   const filteredData = data.filter(task => task.status === status);
   if(!!filteredData && Array.isArray(data)){
     filteredData.forEach( task => {

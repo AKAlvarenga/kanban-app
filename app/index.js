@@ -14,9 +14,11 @@ const doneContainer = document.getElementById('done');
  * Update each lane with the updated information
  */
 const renderTasks = () => {
-  todo.loadList(data, todoContainer);
-  doing.loadList(data, doingContainer);
-  done.loadList(data, doneContainer);
+  data.all().then(tasks, () => { 
+    todo.loadList(tasks, todoContainer)
+    doing.loadList(tasks, doingContainer);
+    done.loadList(tasks, doneContainer);
+  });
 }
 /**
  * Add move ability to all task across the lanes in sequential order
@@ -24,11 +26,19 @@ const renderTasks = () => {
 const addEventsTasks = () => {
   const todoTasks = document.querySelectorAll('#to-do input[type="checkbox"]');
   todoTasks.forEach(todoItem =>
-    todoItem.addEventListener('change', (event) => moveTo.doing(event, updateStatus, renderTasks))
+    todoItem.addEventListener('change', (event) => {
+      moveTo.doing(event, data.update, renderTasks);
+      renderApp();
+      addEventsTasks();
+    })
   );
   const doingTasks = document.querySelectorAll('#doing input[type="checkbox"]');
   doingTasks.forEach(doingTask =>
-    doingTask.addEventListener('change', (event) => moveTo.done(event, updateStatus, renderTasks))
+    doingTask.addEventListener('change', (event) =>{
+      moveTo.done(event, data.update, renderTasks);
+      renderApp();
+      addEventsTasks();
+    })
   );
 }
 
@@ -61,11 +71,9 @@ task.addForm(app);
 app.appendChild(task.addButton);
 // Add ability to append new task on to-do queue
 task.addButton.addEventListener('click', () => {
-  todo.addTask(
-    document.getElementById("task-name"),
-    data,
-    todoContainer
-  )
+  const {value} =  document.getElementById("task-name");
+  data.add(value);
+  renderTasks();
   addEventsTasks();
 });
 // let's go!
